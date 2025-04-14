@@ -5,19 +5,6 @@ import plistlib
 import sys
 import platform
 
-#def open_url_file(file_path):
-#    """Opens the URL file using the default system application."""
-#    try:
-#       if platform.system() == "Windows":
-#            os.startfile(file_path)
-#        elif platform.system() == "Darwin":  # macOS
-#            os.system(f"open '{file_path}'")
-#        elif platform.system() == "Linux":
-#            os.system(f"xdg-open '{file_path}'")
-#        else:
-#            messagebox.showerror("Error", f"Cannot open URL file on this operating system.")
-#    except Exception as e:
-#        messagebox.showerror("Error", f"Error opening URL file: {e}")
 
 def create_usable_url_file(url, output_path):
     """Creates a .url file with the correct format."""
@@ -61,7 +48,6 @@ def convert_webloc_to_url_file(webloc_path, output_folder=".", delete_original=F
 
             if create_usable_url_file(url, output_path):
                 messagebox.showinfo("Conversion Complete", f"Successfully converted '{os.path.basename(webloc_path)}' to '{output_filename}'.")
-                #open_url_file(output_path)  # Open the .url file
 
                 if delete_original:
                     try:
