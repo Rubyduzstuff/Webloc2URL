@@ -1,6 +1,3 @@
-write an explanation in simple terms what this app does
-
-
 Okay, imagine you're on a Mac and you save a website link. Instead of a normal web address, it sometimes saves it as a special Mac file called a ".webloc" file.
 
 This app is like a translator for those ".webloc" files. It takes that special Mac file and turns it into a regular ".url" file, which is the kind of web address file that works on Windows computers and other systems without any problems.
