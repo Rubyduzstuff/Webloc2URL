@@ -1,3 +1,8 @@
+<h1>
+.webloc 2 URL
+</h1>
+
+
 Okay, imagine you're on a Mac and you save a website link. Instead of a normal web address, it sometimes saves it as a special Mac file called a ".webloc" file.
 
 This app is like a translator for those ".webloc" files. It takes that special Mac file and turns it into a regular ".url" file, which is the kind of web address file that works on Windows computers and other systems without any problems.
@@ -12,4 +17,13 @@ Think of it as making sure everyone can open the website links, no matter what k
 
 
 ![Screenshot of the app](images/Screenshot1.png)
+
+<h1>
+How to run it 
+</h1>
+
+Navigate to the files location in terminal/cmd
+
+Run:
+> python  Webloc2URL_UI.py
 
