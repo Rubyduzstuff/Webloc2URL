@@ -17,6 +17,7 @@ def create_usable_url_file(url, output_path):
         messagebox.showerror("Error", f"Error creating .url file: {e}")
         return False
 
+
 def convert_webloc_to_url_file(webloc_path, output_folder=".", delete_original=False):
     """
     Converts a single .webloc file to a usable .url file.
@@ -64,6 +65,7 @@ def convert_webloc_to_url_file(webloc_path, output_folder=".", delete_original=F
         messagebox.showerror("Error", f"An error occurred while processing {webloc_path}: {e}")
         return None
 
+
 def convert_folder():
     """Handles the conversion of all .webloc files in a selected folder."""
     folder_selected = filedialog.askdirectory(title="Select Folder with .webloc Files")
@@ -71,6 +73,7 @@ def convert_folder():
         output_folder = filedialog.askdirectory(title="Select Output Folder (optional)") or folder_selected
         delete_originals = delete_var.get()
 
+        # iterate through all files in the selected folder
         webloc_files_found = False
         for filename in os.listdir(folder_selected):
             if filename.lower().endswith(".webloc"):
@@ -83,6 +86,7 @@ def convert_folder():
         else:
             messagebox.showinfo("Conversion Batch Complete", "Finished processing all .webloc files in the folder.")
 
+
 def browse_webloc_file():
     """Opens a dialog for the user to select a single .webloc file."""
     file_selected = filedialog.askopenfilename(
@@ -93,12 +97,14 @@ def browse_webloc_file():
         single_webloc_path_entry.delete(0, tk.END)
         single_webloc_path_entry.insert(0, file_selected)
 
+
 def browse_output_single_file():
     """Opens a dialog for the user to select an output folder for a single file."""
     folder_selected = filedialog.askdirectory(title="Select Output Folder (optional)")
     if folder_selected:
         output_single_path_entry.delete(0, tk.END)
         output_single_path_entry.insert(0, folder_selected)
+
 
 def convert_single_file():
     """Handles the conversion of a single selected .webloc file."""
@@ -110,7 +116,9 @@ def convert_single_file():
         messagebox.showerror("Error", "Please select a .webloc file to convert.")
         return
 
+
     convert_webloc_to_url_file(webloc_path, output_path, delete_original)
+
 
 # --- UI Setup ---
 root = tk.Tk()
@@ -145,6 +153,7 @@ delete_single_check.grid(row=2, column=0, columnspan=3, padx=5, pady=5, sticky="
 convert_single_button = tk.Button(single_file_frame, text="Convert Single File", command=convert_single_file)
 convert_single_button.grid(row=3, column=0, columnspan=3, padx=5, pady=10)
 
+
 # --- Folder Conversion ---
 folder_frame = tk.LabelFrame(root, text="Convert Folder of .webloc Files")
 folder_frame.grid(row=1, column=0, padx=10, pady=10, sticky="ew")
@@ -156,8 +165,34 @@ delete_var = tk.BooleanVar()
 delete_check = tk.Checkbutton(folder_frame, text="Delete original .webloc files after conversion", variable=delete_var)
 delete_check.grid(row=1, column=0, padx=5, pady=5, sticky="w")
 
+
 # Configure grid column weights to make the entry fields expand
 root.grid_columnconfigure(0, weight=1)
 single_file_frame.grid_columnconfigure(1, weight=1)
+
+
+# --- Developer Info Frame --- #
+dev_info_frame = tk.LabelFrame(root, text=" Developer Info ")
+dev_info_frame.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
+
+# Layout improvements for the developer info
+tk.Label(dev_info_frame, text="Developer:").grid(row=0, column=0, padx=5, pady=2, sticky="e")
+developer_name_label = tk.Label(dev_info_frame, text="Ruben Bellegarde")
+developer_name_label.grid(row=0, column=1, padx=5, pady=2, sticky="w")
+
+tk.Label(dev_info_frame, text="Email:").grid(row=1, column=0, padx=5, pady=2, sticky="e")
+developer_email_label = tk.Label(dev_info_frame, text="Rubybrubyb@gmail.com")
+developer_email_label.grid(row=1, column=1, padx=5, pady=2, sticky="w")
+
+# Add system info
+tk.Label(dev_info_frame, text="System:").grid(row=2, column=0, padx=5, pady=2, sticky="e")
+system_info_label = tk.Label(dev_info_frame, text=f"{platform.system()} {platform.release()}")
+system_info_label.grid(row=2, column=1, padx=5, pady=2, sticky="w")
+
+# Add version info (if you have it)
+# tk.Label(dev_info_frame, text="Version:").grid(row=3, column=0, padx=5, pady=2, sticky="e")
+# version_info_label = tk.Label(dev_info_frame, text="1.0.0")  # Replace with your actual version
+# version_info_label.grid(row=3, column=1, padx=5, pady=2, sticky="w")
+
 
 root.mainloop()
